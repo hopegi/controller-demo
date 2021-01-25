@@ -6,3 +6,7 @@ clean:
 build: clean
 	CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o pod-controller
 
+build-in-github: clean
+	mkdir ../src
+	mv ../controller-demo ../src
+	CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o pod-controller
