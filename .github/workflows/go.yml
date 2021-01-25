@@ -19,4 +19,4 @@ jobs:
         go-version: 1.15
 
     - name: Build
-      run: make build-in-github
+      run: make -f Makefile-github build-in-github
