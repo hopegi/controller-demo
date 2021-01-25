@@ -1,0 +1,2447 @@
+// Copyright (c) 2017-2018 THL A29 Limited, a Tencent company. All Rights Reserved.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//    http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+package v20190719
+
+import (
+    "github.com/tencentcloud/tencentcloud-sdk-go/tencentcloud/common"
+    tchttp "github.com/tencentcloud/tencentcloud-sdk-go/tencentcloud/common/http"
+    "github.com/tencentcloud/tencentcloud-sdk-go/tencentcloud/common/profile"
+)
+
+const APIVersion = "2019-07-19"
+
+type Client struct {
+    common.Client
+}
+
+// Deprecated
+func NewClientWithSecretId(secretId, secretKey, region string) (client *Client, err error) {
+    cpf := profile.NewClientProfile()
+    client = &Client{}
+    client.Init(region).WithSecretId(secretId, secretKey).WithProfile(cpf)
+    return
+}
+
+func NewClient(credential *common.Credential, region string, clientProfile *profile.ClientProfile) (client *Client, err error) {
+    client = &Client{}
+    client.Init(region).
+        WithCredential(credential).
+        WithProfile(clientProfile)
+    return
+}
+
+
+func NewAllocateAddressesRequest() (request *AllocateAddressesRequest) {
+    request = &AllocateAddressesRequest{
+        BaseRequest: &tchttp.BaseRequest{},
+    }
+    request.Init().WithApiInfo("ecm", APIVersion, "AllocateAddresses")
+    return
+}
+
+func NewAllocateAddressesResponse() (response *AllocateAddressesResponse) {
+    response = &AllocateAddressesResponse{
+        BaseResponse: &tchttp.BaseResponse{},
+    }
+    return
+}
+
+// 申请一个或多个弹性公网IP（简称 EIP）
+func (c *Client) AllocateAddresses(request *AllocateAddressesRequest) (response *AllocateAddressesResponse, err error) {
+    if request == nil {
+        request = NewAllocateAddressesRequest()
+    }
+    response = NewAllocateAddressesResponse()
+    err = c.Send(request, response)
+    return
+}
+
+func NewAssignPrivateIpAddressesRequest() (request *AssignPrivateIpAddressesRequest) {
+    request = &AssignPrivateIpAddressesRequest{
+        BaseRequest: &tchttp.BaseRequest{},
+    }
+    request.Init().WithApiInfo("ecm", APIVersion, "AssignPrivateIpAddresses")
+    return
+}
+
+func NewAssignPrivateIpAddressesResponse() (response *AssignPrivateIpAddressesResponse) {
+    response = &AssignPrivateIpAddressesResponse{
+        BaseResponse: &tchttp.BaseResponse{},
+    }
+    return
+}
+
+// 弹性网卡申请内网 IP
+func (c *Client) AssignPrivateIpAddresses(request *AssignPrivateIpAddressesRequest) (response *AssignPrivateIpAddressesResponse, err error) {
+    if request == nil {
+        request = NewAssignPrivateIpAddressesRequest()
+    }
+    response = NewAssignPrivateIpAddressesResponse()
+    err = c.Send(request, response)
+    return
+}
+
+func NewAssociateAddressRequest() (request *AssociateAddressRequest) {
+    request = &AssociateAddressRequest{
+        BaseRequest: &tchttp.BaseRequest{},
+    }
+    request.Init().WithApiInfo("ecm", APIVersion, "AssociateAddress")
+    return
+}
+
+func NewAssociateAddressResponse() (response *AssociateAddressResponse) {
+    response = &AssociateAddressResponse{
+        BaseResponse: &tchttp.BaseResponse{},
+    }
+    return
+}
+
+// 将弹性公网IP（简称 EIP）绑定到实例或弹性网卡的指定内网 IP 上。
+// 将 EIP 绑定到实例（CVM）上，其本质是将 EIP 绑定到实例上主网卡的主内网 IP 上。
+// 将 EIP 绑定到主网卡的主内网IP上，绑定过程会把其上绑定的普通公网 IP 自动解绑并释放。
+// 将 EIP 绑定到指定网卡的内网 IP上（非主网卡的主内网IP），则必须先解绑该 EIP，才能再绑定新的。
+// 将 EIP 绑定到NAT网关，请使用接口EipBindNatGateway
+// EIP 如果欠费或被封堵，则不能被绑定。
+// 只有状态为 UNBIND 的 EIP 才能够被绑定。
+func (c *Client) AssociateAddress(request *AssociateAddressRequest) (response *AssociateAddressResponse, err error) {
+    if request == nil {
+        request = NewAssociateAddressRequest()
+    }
+    response = NewAssociateAddressResponse()
+    err = c.Send(request, response)
+    return
+}
+
+func NewAssociateSecurityGroupsRequest() (request *AssociateSecurityGroupsRequest) {
+    request = &AssociateSecurityGroupsRequest{
+        BaseRequest: &tchttp.BaseRequest{},
+    }
+    request.Init().WithApiInfo("ecm", APIVersion, "AssociateSecurityGroups")
+    return
+}
+
+func NewAssociateSecurityGroupsResponse() (response *AssociateSecurityGroupsResponse) {
+    response = &AssociateSecurityGroupsResponse{
+        BaseResponse: &tchttp.BaseResponse{},
+    }
+    return
+}
+
+// 绑定安全组
+func (c *Client) AssociateSecurityGroups(request *AssociateSecurityGroupsRequest) (response *AssociateSecurityGroupsResponse, err error) {
+    if request == nil {
+        request = NewAssociateSecurityGroupsRequest()
+    }
+    response = NewAssociateSecurityGroupsResponse()
+    err = c.Send(request, response)
+    return
+}
+
+func NewAttachNetworkInterfaceRequest() (request *AttachNetworkInterfaceRequest) {
+    request = &AttachNetworkInterfaceRequest{
+        BaseRequest: &tchttp.BaseRequest{},
+    }
+    request.Init().WithApiInfo("ecm", APIVersion, "AttachNetworkInterface")
+    return
+}
+
+func NewAttachNetworkInterfaceResponse() (response *AttachNetworkInterfaceResponse) {
+    response = &AttachNetworkInterfaceResponse{
+        BaseResponse: &tchttp.BaseResponse{},
+    }
+    return
+}
+
+// 弹性网卡绑定云主机
+func (c *Client) AttachNetworkInterface(request *AttachNetworkInterfaceRequest) (response *AttachNetworkInterfaceResponse, err error) {
+    if request == nil {
+        request = NewAttachNetworkInterfaceRequest()
+    }
+    response = NewAttachNetworkInterfaceResponse()
+    err = c.Send(request, response)
+    return
+}
+
+func NewBatchDeregisterTargetsRequest() (request *BatchDeregisterTargetsRequest) {
+    request = &BatchDeregisterTargetsRequest{
+        BaseRequest: &tchttp.BaseRequest{},
+    }
+    request.Init().WithApiInfo("ecm", APIVersion, "BatchDeregisterTargets")
+    return
+}
+
+func NewBatchDeregisterTargetsResponse() (response *BatchDeregisterTargetsResponse) {
+    response = &BatchDeregisterTargetsResponse{
+        BaseResponse: &tchttp.BaseResponse{},
+    }
+    return
+}
+
+// 批量解绑后端服务。
+func (c *Client) BatchDeregisterTargets(request *BatchDeregisterTargetsRequest) (response *BatchDeregisterTargetsResponse, err error) {
+    if request == nil {
+        request = NewBatchDeregisterTargetsRequest()
+    }
+    response = NewBatchDeregisterTargetsResponse()
+    err = c.Send(request, response)
+    return
+}
+
+func NewBatchModifyTargetWeightRequest() (request *BatchModifyTargetWeightRequest) {
+    request = &BatchModifyTargetWeightRequest{
+        BaseRequest: &tchttp.BaseRequest{},
+    }
+    request.Init().WithApiInfo("ecm", APIVersion, "BatchModifyTargetWeight")
+    return
+}
+
+func NewBatchModifyTargetWeightResponse() (response *BatchModifyTargetWeightResponse) {
+    response = &BatchModifyTargetWeightResponse{
+        BaseResponse: &tchttp.BaseResponse{},
+    }
+    return
+}
+
+// 批量修改监听器绑定的后端机器的转发权重。
+func (c *Client) BatchModifyTargetWeight(request *BatchModifyTargetWeightRequest) (response *BatchModifyTargetWeightResponse, err error) {
+    if request == nil {
+        request = NewBatchModifyTargetWeightRequest()
+    }
+    response = NewBatchModifyTargetWeightResponse()
+    err = c.Send(request, response)
+    return
+}
+
+func NewBatchRegisterTargetsRequest() (request *BatchRegisterTargetsRequest) {
+    request = &BatchRegisterTargetsRequest{
+        BaseRequest: &tchttp.BaseRequest{},
+    }
+    request.Init().WithApiInfo("ecm", APIVersion, "BatchRegisterTargets")
+    return
+}
+
+func NewBatchRegisterTargetsResponse() (response *BatchRegisterTargetsResponse) {
+    response = &BatchRegisterTargetsResponse{
+        BaseResponse: &tchttp.BaseResponse{},
+    }
+    return
+}
+
+// 批量绑定后端目标。
+func (c *Client) BatchRegisterTargets(request *BatchRegisterTargetsRequest) (response *BatchRegisterTargetsResponse, err error) {
+    if request == nil {
+        request = NewBatchRegisterTargetsRequest()
+    }
+    response = NewBatchRegisterTargetsResponse()
+    err = c.Send(request, response)
+    return
+}
+
+func NewCreateImageRequest() (request *CreateImageRequest) {
+    request = &CreateImageRequest{
+        BaseRequest: &tchttp.BaseRequest{},
+    }
+    request.Init().WithApiInfo("ecm", APIVersion, "CreateImage")
+    return
+}
+
+func NewCreateImageResponse() (response *CreateImageResponse) {
+    response = &CreateImageResponse{
+        BaseResponse: &tchttp.BaseResponse{},
+    }
+    return
+}
+
+// 本接口(CreateImage)用于将实例的系统盘制作为新镜像，创建后的镜像可以用于创建实例。
+func (c *Client) CreateImage(request *CreateImageRequest) (response *CreateImageResponse, err error) {
+    if request == nil {
+        request = NewCreateImageRequest()
+    }
+    response = NewCreateImageResponse()
+    err = c.Send(request, response)
+    return
+}
+
+func NewCreateListenerRequest() (request *CreateListenerRequest) {
+    request = &CreateListenerRequest{
+        BaseRequest: &tchttp.BaseRequest{},
+    }
+    request.Init().WithApiInfo("ecm", APIVersion, "CreateListener")
+    return
+}
+
+func NewCreateListenerResponse() (response *CreateListenerResponse) {
+    response = &CreateListenerResponse{
+        BaseResponse: &tchttp.BaseResponse{},
+    }
+    return
+}
+
+// 创建负载均衡监听器。
+func (c *Client) CreateListener(request *CreateListenerRequest) (response *CreateListenerResponse, err error) {
+    if request == nil {
+        request = NewCreateListenerRequest()
+    }
+    response = NewCreateListenerResponse()
+    err = c.Send(request, response)
+    return
+}
+
+func NewCreateLoadBalancerRequest() (request *CreateLoadBalancerRequest) {
+    request = &CreateLoadBalancerRequest{
+        BaseRequest: &tchttp.BaseRequest{},
+    }
+    request.Init().WithApiInfo("ecm", APIVersion, "CreateLoadBalancer")
+    return
+}
+
+func NewCreateLoadBalancerResponse() (response *CreateLoadBalancerResponse) {
+    response = &CreateLoadBalancerResponse{
+        BaseResponse: &tchttp.BaseResponse{},
+    }
+    return
+}
+
+// 购买负载均衡实例。
+func (c *Client) CreateLoadBalancer(request *CreateLoadBalancerRequest) (response *CreateLoadBalancerResponse, err error) {
+    if request == nil {
+        request = NewCreateLoadBalancerRequest()
+    }
+    response = NewCreateLoadBalancerResponse()
+    err = c.Send(request, response)
+    return
+}
+
+func NewCreateModuleRequest() (request *CreateModuleRequest) {
+    request = &CreateModuleRequest{
+        BaseRequest: &tchttp.BaseRequest{},
+    }
+    request.Init().WithApiInfo("ecm", APIVersion, "CreateModule")
+    return
+}
+
+func NewCreateModuleResponse() (response *CreateModuleResponse) {
+    response = &CreateModuleResponse{
+        BaseResponse: &tchttp.BaseResponse{},
+    }
+    return
+}
+
+// 创建模块
+func (c *Client) CreateModule(request *CreateModuleRequest) (response *CreateModuleResponse, err error) {
+    if request == nil {
+        request = NewCreateModuleRequest()
+    }
+    response = NewCreateModuleResponse()
+    err = c.Send(request, response)
+    return
+}
+
+func NewCreateNetworkInterfaceRequest() (request *CreateNetworkInterfaceRequest) {
+    request = &CreateNetworkInterfaceRequest{
+        BaseRequest: &tchttp.BaseRequest{},
+    }
+    request.Init().WithApiInfo("ecm", APIVersion, "CreateNetworkInterface")
+    return
+}
+
+func NewCreateNetworkInterfaceResponse() (response *CreateNetworkInterfaceResponse) {
+    response = &CreateNetworkInterfaceResponse{
+        BaseResponse: &tchttp.BaseResponse{},
+    }
+    return
+}
+
+// 创建弹性网卡
+func (c *Client) CreateNetworkInterface(request *CreateNetworkInterfaceRequest) (response *CreateNetworkInterfaceResponse, err error) {
+    if request == nil {
+        request = NewCreateNetworkInterfaceRequest()
+    }
+    response = NewCreateNetworkInterfaceResponse()
+    err = c.Send(request, response)
+    return
+}
+
+func NewCreateSecurityGroupRequest() (request *CreateSecurityGroupRequest) {
+    request = &CreateSecurityGroupRequest{
+        BaseRequest: &tchttp.BaseRequest{},
+    }
+    request.Init().WithApiInfo("ecm", APIVersion, "CreateSecurityGroup")
+    return
+}
+
+func NewCreateSecurityGroupResponse() (response *CreateSecurityGroupResponse) {
+    response = &CreateSecurityGroupResponse{
+        BaseResponse: &tchttp.BaseResponse{},
+    }
+    return
+}
+
+// 创建安全组
+func (c *Client) CreateSecurityGroup(request *CreateSecurityGroupRequest) (response *CreateSecurityGroupResponse, err error) {
+    if request == nil {
+        request = NewCreateSecurityGroupRequest()
+    }
+    response = NewCreateSecurityGroupResponse()
+    err = c.Send(request, response)
+    return
+}
+
+func NewCreateSecurityGroupPoliciesRequest() (request *CreateSecurityGroupPoliciesRequest) {
+    request = &CreateSecurityGroupPoliciesRequest{
+        BaseRequest: &tchttp.BaseRequest{},
+    }
+    request.Init().WithApiInfo("ecm", APIVersion, "CreateSecurityGroupPolicies")
+    return
+}
+
+func NewCreateSecurityGroupPoliciesResponse() (response *CreateSecurityGroupPoliciesResponse) {
+    response = &CreateSecurityGroupPoliciesResponse{
+        BaseResponse: &tchttp.BaseResponse{},
+    }
+    return
+}
+
+// 在 SecurityGroupPolicySet 参数中：
+// 
+// Version 安全组规则版本号，用户每次更新安全规则版本会自动加1，防止您更新的路由规则已过期，不填不考虑冲突。
+// 在创建出站和入站规则（Egress 和 Ingress）时：
+// Protocol 字段支持输入TCP, UDP, ICMP, ICMPV6, GRE, ALL。
+// CidrBlock 字段允许输入符合cidr格式标准的任意字符串。(展开)在基础网络中，如果 CidrBlock 包含您的账户内的云服务器之外的设备在腾讯云的内网 IP，并不代表此规则允许您访问这些设备，租户之间网络隔离规则优先于安全组中的内网规则。
+// Ipv6CidrBlock 字段允许输入符合IPv6 cidr格式标准的任意字符串。(展开)在基础网络中，如果Ipv6CidrBlock 包含您的账户内的云服务器之外的设备在腾讯云的内网 IPv6，并不代表此规则允许您访问这些设备，租户之间网络隔离规则优先于安全组中的内网规则。
+// SecurityGroupId 字段允许输入与待修改的安全组位于相同项目中的安全组 ID，包括这个安全组 ID 本身，代表安全组下所有云服务器的内网 IP。使用这个字段时，这条规则用来匹配网络报文的过程中会随着被使用的这个 ID 所关联的云服务器变化而变化，不需要重新修改。
+// Port 字段允许输入一个单独端口号，或者用减号分隔的两个端口号代表端口范围，例如80或8000-8010。只有当 Protocol 字段是 TCP 或 UDP 时，Port 字段才被接受，即 Protocol 字段不是 TCP 或 UDP 时，Protocol 和 Port 排他关系，不允许同时输入，否则会接口报错。
+// Action 字段只允许输入 ACCEPT 或 DROP。
+// CidrBlock, Ipv6CidrBlock, SecurityGroupId, AddressTemplate 四者是排他关系，不允许同时输入，Protocol + Port 和 ServiceTemplate 二者是排他关系，不允许同时输入。
+// 一次请求中只能创建单个方向的规则, 如果需要指定索引（PolicyIndex）参数, 多条规则的索引必须一致。
+func (c *Client) CreateSecurityGroupPolicies(request *CreateSecurityGroupPoliciesRequest) (response *CreateSecurityGroupPoliciesResponse, err error) {
+    if request == nil {
+        request = NewCreateSecurityGroupPoliciesRequest()
+    }
+    response = NewCreateSecurityGroupPoliciesResponse()
+    err = c.Send(request, response)
+    return
+}
+
+func NewCreateSubnetRequest() (request *CreateSubnetRequest) {
+    request = &CreateSubnetRequest{
+        BaseRequest: &tchttp.BaseRequest{},
+    }
+    request.Init().WithApiInfo("ecm", APIVersion, "CreateSubnet")
+    return
+}
+
+func NewCreateSubnetResponse() (response *CreateSubnetResponse) {
+    response = &CreateSubnetResponse{
+        BaseResponse: &tchttp.BaseResponse{},
+    }
+    return
+}
+
+// 创建子网，若创建成功，则此子网会成为此可用区的默认子网。
+func (c *Client) CreateSubnet(request *CreateSubnetRequest) (response *CreateSubnetResponse, err error) {
+    if request == nil {
+        request = NewCreateSubnetRequest()
+    }
+    response = NewCreateSubnetResponse()
+    err = c.Send(request, response)
+    return
+}
+
+func NewCreateVpcRequest() (request *CreateVpcRequest) {
+    request = &CreateVpcRequest{
+        BaseRequest: &tchttp.BaseRequest{},
+    }
+    request.Init().WithApiInfo("ecm", APIVersion, "CreateVpc")
+    return
+}
+
+func NewCreateVpcResponse() (response *CreateVpcResponse) {
+    response = &CreateVpcResponse{
+        BaseResponse: &tchttp.BaseResponse{},
+    }
+    return
+}
+
+// 创建私有网络
+func (c *Client) CreateVpc(request *CreateVpcRequest) (response *CreateVpcResponse, err error) {
+    if request == nil {
+        request = NewCreateVpcRequest()
+    }
+    response = NewCreateVpcResponse()
+    err = c.Send(request, response)
+    return
+}
+
+func NewDeleteImageRequest() (request *DeleteImageRequest) {
+    request = &DeleteImageRequest{
+        BaseRequest: &tchttp.BaseRequest{},
+    }
+    request.Init().WithApiInfo("ecm", APIVersion, "DeleteImage")
+    return
+}
+
+func NewDeleteImageResponse() (response *DeleteImageResponse) {
+    response = &DeleteImageResponse{
+        BaseResponse: &tchttp.BaseResponse{},
+    }
+    return
+}
+
+// 删除镜像
+func (c *Client) DeleteImage(request *DeleteImageRequest) (response *DeleteImageResponse, err error) {
+    if request == nil {
+        request = NewDeleteImageRequest()
+    }
+    response = NewDeleteImageResponse()
+    err = c.Send(request, response)
+    return
+}
+
+func NewDeleteListenerRequest() (request *DeleteListenerRequest) {
+    request = &DeleteListenerRequest{
+        BaseRequest: &tchttp.BaseRequest{},
+    }
+    request.Init().WithApiInfo("ecm", APIVersion, "DeleteListener")
+    return
+}
+
+func NewDeleteListenerResponse() (response *DeleteListenerResponse) {
+    response = &DeleteListenerResponse{
+        BaseResponse: &tchttp.BaseResponse{},
+    }
+    return
+}
+
+// 删除负载均衡监听器。
+func (c *Client) DeleteListener(request *DeleteListenerRequest) (response *DeleteListenerResponse, err error) {
+    if request == nil {
+        request = NewDeleteListenerRequest()
+    }
+    response = NewDeleteListenerResponse()
+    err = c.Send(request, response)
+    return
+}
+
+func NewDeleteLoadBalancerRequest() (request *DeleteLoadBalancerRequest) {
+    request = &DeleteLoadBalancerRequest{
+        BaseRequest: &tchttp.BaseRequest{},
+    }
+    request.Init().WithApiInfo("ecm", APIVersion, "DeleteLoadBalancer")
+    return
+}
+
+func NewDeleteLoadBalancerResponse() (response *DeleteLoadBalancerResponse) {
+    response = &DeleteLoadBalancerResponse{
+        BaseResponse: &tchttp.BaseResponse{},
+    }
+    return
+}
+
+// 删除负载均衡实例。
+func (c *Client) DeleteLoadBalancer(request *DeleteLoadBalancerRequest) (response *DeleteLoadBalancerResponse, err error) {
+    if request == nil {
+        request = NewDeleteLoadBalancerRequest()
+    }
+    response = NewDeleteLoadBalancerResponse()
+    err = c.Send(request, response)
+    return
+}
+
+func NewDeleteLoadBalancerListenersRequest() (request *DeleteLoadBalancerListenersRequest) {
+    request = &DeleteLoadBalancerListenersRequest{
+        BaseRequest: &tchttp.BaseRequest{},
+    }
+    request.Init().WithApiInfo("ecm", APIVersion, "DeleteLoadBalancerListeners")
+    return
+}
+
+func NewDeleteLoadBalancerListenersResponse() (response *DeleteLoadBalancerListenersResponse) {
+    response = &DeleteLoadBalancerListenersResponse{
+        BaseResponse: &tchttp.BaseResponse{},
+    }
+    return
+}
+
+// 删除负载均衡多个监听器
+func (c *Client) DeleteLoadBalancerListeners(request *DeleteLoadBalancerListenersRequest) (response *DeleteLoadBalancerListenersResponse, err error) {
+    if request == nil {
+        request = NewDeleteLoadBalancerListenersRequest()
+    }
+    response = NewDeleteLoadBalancerListenersResponse()
+    err = c.Send(request, response)
+    return
+}
+
+func NewDeleteModuleRequest() (request *DeleteModuleRequest) {
+    request = &DeleteModuleRequest{
+        BaseRequest: &tchttp.BaseRequest{},
+    }
+    request.Init().WithApiInfo("ecm", APIVersion, "DeleteModule")
+    return
+}
+
+func NewDeleteModuleResponse() (response *DeleteModuleResponse) {
+    response = &DeleteModuleResponse{
+        BaseResponse: &tchttp.BaseResponse{},
+    }
+    return
+}
+
+// 删除业务模块
+func (c *Client) DeleteModule(request *DeleteModuleRequest) (response *DeleteModuleResponse, err error) {
+    if request == nil {
+        request = NewDeleteModuleRequest()
+    }
+    response = NewDeleteModuleResponse()
+    err = c.Send(request, response)
+    return
+}
+
+func NewDeleteNetworkInterfaceRequest() (request *DeleteNetworkInterfaceRequest) {
+    request = &DeleteNetworkInterfaceRequest{
+        BaseRequest: &tchttp.BaseRequest{},
+    }
+    request.Init().WithApiInfo("ecm", APIVersion, "DeleteNetworkInterface")
+    return
+}
+
+func NewDeleteNetworkInterfaceResponse() (response *DeleteNetworkInterfaceResponse) {
+    response = &DeleteNetworkInterfaceResponse{
+        BaseResponse: &tchttp.BaseResponse{},
+    }
+    return
+}
+
+// 删除弹性网卡
+func (c *Client) DeleteNetworkInterface(request *DeleteNetworkInterfaceRequest) (response *DeleteNetworkInterfaceResponse, err error) {
+    if request == nil {
+        request = NewDeleteNetworkInterfaceRequest()
+    }
+    response = NewDeleteNetworkInterfaceResponse()
+    err = c.Send(request, response)
+    return
+}
+
+func NewDeleteSecurityGroupRequest() (request *DeleteSecurityGroupRequest) {
+    request = &DeleteSecurityGroupRequest{
+        BaseRequest: &tchttp.BaseRequest{},
+    }
+    request.Init().WithApiInfo("ecm", APIVersion, "DeleteSecurityGroup")
+    return
+}
+
+func NewDeleteSecurityGroupResponse() (response *DeleteSecurityGroupResponse) {
+    response = &DeleteSecurityGroupResponse{
+        BaseResponse: &tchttp.BaseResponse{},
+    }
+    return
+}
+
+// 只有当前账号下的安全组允许被删除。
+// 安全组实例ID如果在其他安全组的规则中被引用，则无法直接删除。这种情况下，需要先进行规则修改，再删除安全组。
+// 删除的安全组无法再找回，请谨慎调用。
+func (c *Client) DeleteSecurityGroup(request *DeleteSecurityGroupRequest) (response *DeleteSecurityGroupResponse, err error) {
+    if request == nil {
+        request = NewDeleteSecurityGroupRequest()
+    }
+    response = NewDeleteSecurityGroupResponse()
+    err = c.Send(request, response)
+    return
+}
+
+func NewDeleteSecurityGroupPoliciesRequest() (request *DeleteSecurityGroupPoliciesRequest) {
+    request = &DeleteSecurityGroupPoliciesRequest{
+        BaseRequest: &tchttp.BaseRequest{},
+    }
+    request.Init().WithApiInfo("ecm", APIVersion, "DeleteSecurityGroupPolicies")
+    return
+}
+
+func NewDeleteSecurityGroupPoliciesResponse() (response *DeleteSecurityGroupPoliciesResponse) {
+    response = &DeleteSecurityGroupPoliciesResponse{
+        BaseResponse: &tchttp.BaseResponse{},
+    }
+    return
+}
+
+// SecurityGroupPolicySet.Version 用于指定要操作的安全组的版本。传入 Version 版本号若不等于当前安全组的最新版本，将返回失败；若不传 Version 则直接删除指定PolicyIndex的规则。
+func (c *Client) DeleteSecurityGroupPolicies(request *DeleteSecurityGroupPoliciesRequest) (response *DeleteSecurityGroupPoliciesResponse, err error) {
+    if request == nil {
+        request = NewDeleteSecurityGroupPoliciesRequest()
+    }
+    response = NewDeleteSecurityGroupPoliciesResponse()
+    err = c.Send(request, response)
+    return
+}
+
+func NewDeleteSubnetRequest() (request *DeleteSubnetRequest) {
+    request = &DeleteSubnetRequest{
+        BaseRequest: &tchttp.BaseRequest{},
+    }
+    request.Init().WithApiInfo("ecm", APIVersion, "DeleteSubnet")
+    return
+}
+
+func NewDeleteSubnetResponse() (response *DeleteSubnetResponse) {
+    response = &DeleteSubnetResponse{
+        BaseResponse: &tchttp.BaseResponse{},
+    }
+    return
+}
+
+// 删除子网，若子网为可用区下的默认子网，则默认子网会回退到系统自动创建的默认子网，非用户最新创建的子网。若默认子网不满足需求，可调用设置默认子网接口设置。
+func (c *Client) DeleteSubnet(request *DeleteSubnetRequest) (response *DeleteSubnetResponse, err error) {
+    if request == nil {
+        request = NewDeleteSubnetRequest()
+    }
+    response = NewDeleteSubnetResponse()
+    err = c.Send(request, response)
+    return
+}
+
+func NewDeleteVpcRequest() (request *DeleteVpcRequest) {
+    request = &DeleteVpcRequest{
+        BaseRequest: &tchttp.BaseRequest{},
+    }
+    request.Init().WithApiInfo("ecm", APIVersion, "DeleteVpc")
+    return
+}
+
+func NewDeleteVpcResponse() (response *DeleteVpcResponse) {
+    response = &DeleteVpcResponse{
+        BaseResponse: &tchttp.BaseResponse{},
+    }
+    return
+}
+
+// 删除私有网络
+func (c *Client) DeleteVpc(request *DeleteVpcRequest) (response *DeleteVpcResponse, err error) {
+    if request == nil {
+        request = NewDeleteVpcRequest()
+    }
+    response = NewDeleteVpcResponse()
+    err = c.Send(request, response)
+    return
+}
+
+func NewDescribeAddressQuotaRequest() (request *DescribeAddressQuotaRequest) {
+    request = &DescribeAddressQuotaRequest{
+        BaseRequest: &tchttp.BaseRequest{},
+    }
+    request.Init().WithApiInfo("ecm", APIVersion, "DescribeAddressQuota")
+    return
+}
+
+func NewDescribeAddressQuotaResponse() (response *DescribeAddressQuotaResponse) {
+    response = &DescribeAddressQuotaResponse{
+        BaseResponse: &tchttp.BaseResponse{},
+    }
+    return
+}
+
+// 查询您账户的弹性公网IP（简称 EIP）在当前地域的配额信息
+func (c *Client) DescribeAddressQuota(request *DescribeAddressQuotaRequest) (response *DescribeAddressQuotaResponse, err error) {
+    if request == nil {
+        request = NewDescribeAddressQuotaRequest()
+    }
+    response = NewDescribeAddressQuotaResponse()
+    err = c.Send(request, response)
+    return
+}
+
+func NewDescribeAddressesRequest() (request *DescribeAddressesRequest) {
+    request = &DescribeAddressesRequest{
+        BaseRequest: &tchttp.BaseRequest{},
+    }
+    request.Init().WithApiInfo("ecm", APIVersion, "DescribeAddresses")
+    return
+}
+
+func NewDescribeAddressesResponse() (response *DescribeAddressesResponse) {
+    response = &DescribeAddressesResponse{
+        BaseResponse: &tchttp.BaseResponse{},
+    }
+    return
+}
+
+// 查询弹性公网IP列表
+func (c *Client) DescribeAddresses(request *DescribeAddressesRequest) (response *DescribeAddressesResponse, err error) {
+    if request == nil {
+        request = NewDescribeAddressesRequest()
+    }
+    response = NewDescribeAddressesResponse()
+    err = c.Send(request, response)
+    return
+}
+
+func NewDescribeBaseOverviewRequest() (request *DescribeBaseOverviewRequest) {
+    request = &DescribeBaseOverviewRequest{
+        BaseRequest: &tchttp.BaseRequest{},
+    }
+    request.Init().WithApiInfo("ecm", APIVersion, "DescribeBaseOverview")
+    return
+}
+
+func NewDescribeBaseOverviewResponse() (response *DescribeBaseOverviewResponse) {
+    response = &DescribeBaseOverviewResponse{
+        BaseResponse: &tchttp.BaseResponse{},
+    }
+    return
+}
+
+// 获取概览页统计的基本数据
+func (c *Client) DescribeBaseOverview(request *DescribeBaseOverviewRequest) (response *DescribeBaseOverviewResponse, err error) {
+    if request == nil {
+        request = NewDescribeBaseOverviewRequest()
+    }
+    response = NewDescribeBaseOverviewResponse()
+    err = c.Send(request, response)
+    return
+}
+
+func NewDescribeConfigRequest() (request *DescribeConfigRequest) {
+    request = &DescribeConfigRequest{
+        BaseRequest: &tchttp.BaseRequest{},
+    }
+    request.Init().WithApiInfo("ecm", APIVersion, "DescribeConfig")
+    return
+}
+
+func NewDescribeConfigResponse() (response *DescribeConfigResponse) {
+    response = &DescribeConfigResponse{
+        BaseResponse: &tchttp.BaseResponse{},
+    }
+    return
+}
+
+// 获取带宽硬盘等数据的限制
+func (c *Client) DescribeConfig(request *DescribeConfigRequest) (response *DescribeConfigResponse, err error) {
+    if request == nil {
+        request = NewDescribeConfigRequest()
+    }
+    response = NewDescribeConfigResponse()
+    err = c.Send(request, response)
+    return
+}
+
+func NewDescribeCustomImageTaskRequest() (request *DescribeCustomImageTaskRequest) {
+    request = &DescribeCustomImageTaskRequest{
+        BaseRequest: &tchttp.BaseRequest{},
+    }
+    request.Init().WithApiInfo("ecm", APIVersion, "DescribeCustomImageTask")
+    return
+}
+
+func NewDescribeCustomImageTaskResponse() (response *DescribeCustomImageTaskResponse) {
+    response = &DescribeCustomImageTaskResponse{
+        BaseResponse: &tchttp.BaseResponse{},
+    }
+    return
+}
+
+// 查询导入镜像任务
+func (c *Client) DescribeCustomImageTask(request *DescribeCustomImageTaskRequest) (response *DescribeCustomImageTaskResponse, err error) {
+    if request == nil {
+        request = NewDescribeCustomImageTaskRequest()
+    }
+    response = NewDescribeCustomImageTaskResponse()
+    err = c.Send(request, response)
+    return
+}
+
+func NewDescribeDefaultSubnetRequest() (request *DescribeDefaultSubnetRequest) {
+    request = &DescribeDefaultSubnetRequest{
+        BaseRequest: &tchttp.BaseRequest{},
+    }
+    request.Init().WithApiInfo("ecm", APIVersion, "DescribeDefaultSubnet")
+    return
+}
+
+func NewDescribeDefaultSubnetResponse() (response *DescribeDefaultSubnetResponse) {
+    response = &DescribeDefaultSubnetResponse{
+        BaseResponse: &tchttp.BaseResponse{},
+    }
+    return
+}
+
+// 查询可用区的默认子网
+func (c *Client) DescribeDefaultSubnet(request *DescribeDefaultSubnetRequest) (response *DescribeDefaultSubnetResponse, err error) {
+    if request == nil {
+        request = NewDescribeDefaultSubnetRequest()
+    }
+    response = NewDescribeDefaultSubnetResponse()
+    err = c.Send(request, response)
+    return
+}
+
+func NewDescribeImageRequest() (request *DescribeImageRequest) {
+    request = &DescribeImageRequest{
+        BaseRequest: &tchttp.BaseRequest{},
+    }
+    request.Init().WithApiInfo("ecm", APIVersion, "DescribeImage")
+    return
+}
+
+func NewDescribeImageResponse() (response *DescribeImageResponse) {
+    response = &DescribeImageResponse{
+        BaseResponse: &tchttp.BaseResponse{},
+    }
+    return
+}
+
+// 展示镜像列表
+func (c *Client) DescribeImage(request *DescribeImageRequest) (response *DescribeImageResponse, err error) {
+    if request == nil {
+        request = NewDescribeImageRequest()
+    }
+    response = NewDescribeImageResponse()
+    err = c.Send(request, response)
+    return
+}
+
+func NewDescribeImportImageOsRequest() (request *DescribeImportImageOsRequest) {
+    request = &DescribeImportImageOsRequest{
+        BaseRequest: &tchttp.BaseRequest{},
+    }
+    request.Init().WithApiInfo("ecm", APIVersion, "DescribeImportImageOs")
+    return
+}
+
+func NewDescribeImportImageOsResponse() (response *DescribeImportImageOsResponse) {
+    response = &DescribeImportImageOsResponse{
+        BaseResponse: &tchttp.BaseResponse{},
+    }
+    return
+}
+
+// 查询外部导入镜像支持的OS列表
+func (c *Client) DescribeImportImageOs(request *DescribeImportImageOsRequest) (response *DescribeImportImageOsResponse, err error) {
+    if request == nil {
+        request = NewDescribeImportImageOsRequest()
+    }
+    response = NewDescribeImportImageOsResponse()
+    err = c.Send(request, response)
+    return
+}
+
+func NewDescribeInstanceTypeConfigRequest() (request *DescribeInstanceTypeConfigRequest) {
+    request = &DescribeInstanceTypeConfigRequest{
+        BaseRequest: &tchttp.BaseRequest{},
+    }
+    request.Init().WithApiInfo("ecm", APIVersion, "DescribeInstanceTypeConfig")
+    return
+}
+
+func NewDescribeInstanceTypeConfigResponse() (response *DescribeInstanceTypeConfigResponse) {
+    response = &DescribeInstanceTypeConfigResponse{
+        BaseResponse: &tchttp.BaseResponse{},
+    }
+    return
+}
+
+// 获取机型配置列表
+func (c *Client) DescribeInstanceTypeConfig(request *DescribeInstanceTypeConfigRequest) (response *DescribeInstanceTypeConfigResponse, err error) {
+    if request == nil {
+        request = NewDescribeInstanceTypeConfigRequest()
+    }
+    response = NewDescribeInstanceTypeConfigResponse()
+    err = c.Send(request, response)
+    return
+}
+
+func NewDescribeInstanceVncUrlRequest() (request *DescribeInstanceVncUrlRequest) {
+    request = &DescribeInstanceVncUrlRequest{
+        BaseRequest: &tchttp.BaseRequest{},
+    }
+    request.Init().WithApiInfo("ecm", APIVersion, "DescribeInstanceVncUrl")
+    return
+}
+
+func NewDescribeInstanceVncUrlResponse() (response *DescribeInstanceVncUrlResponse) {
+    response = &DescribeInstanceVncUrlResponse{
+        BaseResponse: &tchttp.BaseResponse{},
+    }
+    return
+}
+
+// 查询实例管理终端地址
+func (c *Client) DescribeInstanceVncUrl(request *DescribeInstanceVncUrlRequest) (response *DescribeInstanceVncUrlResponse, err error) {
+    if request == nil {
+        request = NewDescribeInstanceVncUrlRequest()
+    }
+    response = NewDescribeInstanceVncUrlResponse()
+    err = c.Send(request, response)
+    return
+}
+
+func NewDescribeInstancesRequest() (request *DescribeInstancesRequest) {
+    request = &DescribeInstancesRequest{
+        BaseRequest: &tchttp.BaseRequest{},
+    }
+    request.Init().WithApiInfo("ecm", APIVersion, "DescribeInstances")
+    return
+}
+
+func NewDescribeInstancesResponse() (response *DescribeInstancesResponse) {
+    response = &DescribeInstancesResponse{
+        BaseResponse: &tchttp.BaseResponse{},
+    }
+    return
+}
+
+// 获取实例的相关信息。
+func (c *Client) DescribeInstances(request *DescribeInstancesRequest) (response *DescribeInstancesResponse, err error) {
+    if request == nil {
+        request = NewDescribeInstancesRequest()
+    }
+    response = NewDescribeInstancesResponse()
+    err = c.Send(request, response)
+    return
+}
+
+func NewDescribeInstancesDeniedActionsRequest() (request *DescribeInstancesDeniedActionsRequest) {
+    request = &DescribeInstancesDeniedActionsRequest{
+        BaseRequest: &tchttp.BaseRequest{},
+    }
+    request.Init().WithApiInfo("ecm", APIVersion, "DescribeInstancesDeniedActions")
+    return
+}
+
+func NewDescribeInstancesDeniedActionsResponse() (response *DescribeInstancesDeniedActionsResponse) {
+    response = &DescribeInstancesDeniedActionsResponse{
+        BaseResponse: &tchttp.BaseResponse{},
+    }
+    return
+}
+
+// 通过实例id获取当前禁止的操作
+func (c *Client) DescribeInstancesDeniedActions(request *DescribeInstancesDeniedActionsRequest) (response *DescribeInstancesDeniedActionsResponse, err error) {
+    if request == nil {
+        request = NewDescribeInstancesDeniedActionsRequest()
+    }
+    response = NewDescribeInstancesDeniedActionsResponse()
+    err = c.Send(request, response)
+    return
+}
+
+func NewDescribeListenersRequest() (request *DescribeListenersRequest) {
+    request = &DescribeListenersRequest{
+        BaseRequest: &tchttp.BaseRequest{},
+    }
+    request.Init().WithApiInfo("ecm", APIVersion, "DescribeListeners")
+    return
+}
+
+func NewDescribeListenersResponse() (response *DescribeListenersResponse) {
+    response = &DescribeListenersResponse{
+        BaseResponse: &tchttp.BaseResponse{},
+    }
+    return
+}
+
+// 查询负载均衡的监听器列表。
+func (c *Client) DescribeListeners(request *DescribeListenersRequest) (response *DescribeListenersResponse, err error) {
+    if request == nil {
+        request = NewDescribeListenersRequest()
+    }
+    response = NewDescribeListenersResponse()
+    err = c.Send(request, response)
+    return
+}
+
+func NewDescribeLoadBalanceTaskStatusRequest() (request *DescribeLoadBalanceTaskStatusRequest) {
+    request = &DescribeLoadBalanceTaskStatusRequest{
+        BaseRequest: &tchttp.BaseRequest{},
+    }
+    request.Init().WithApiInfo("ecm", APIVersion, "DescribeLoadBalanceTaskStatus")
+    return
+}
+
+func NewDescribeLoadBalanceTaskStatusResponse() (response *DescribeLoadBalanceTaskStatusResponse) {
+    response = &DescribeLoadBalanceTaskStatusResponse{
+        BaseResponse: &tchttp.BaseResponse{},
+    }
+    return
+}
+
+// 查询负载均衡相关的任务状态
+func (c *Client) DescribeLoadBalanceTaskStatus(request *DescribeLoadBalanceTaskStatusRequest) (response *DescribeLoadBalanceTaskStatusResponse, err error) {
+    if request == nil {
+        request = NewDescribeLoadBalanceTaskStatusRequest()
+    }
+    response = NewDescribeLoadBalanceTaskStatusResponse()
+    err = c.Send(request, response)
+    return
+}
+
+func NewDescribeLoadBalancersRequest() (request *DescribeLoadBalancersRequest) {
+    request = &DescribeLoadBalancersRequest{
+        BaseRequest: &tchttp.BaseRequest{},
+    }
+    request.Init().WithApiInfo("ecm", APIVersion, "DescribeLoadBalancers")
+    return
+}
+
+func NewDescribeLoadBalancersResponse() (response *DescribeLoadBalancersResponse) {
+    response = &DescribeLoadBalancersResponse{
+        BaseResponse: &tchttp.BaseResponse{},
+    }
+    return
+}
+
+// 查询负载均衡实例列表。
+func (c *Client) DescribeLoadBalancers(request *DescribeLoadBalancersRequest) (response *DescribeLoadBalancersResponse, err error) {
+    if request == nil {
+        request = NewDescribeLoadBalancersRequest()
+    }
+    response = NewDescribeLoadBalancersResponse()
+    err = c.Send(request, response)
+    return
+}
+
+func NewDescribeModuleRequest() (request *DescribeModuleRequest) {
+    request = &DescribeModuleRequest{
+        BaseRequest: &tchttp.BaseRequest{},
+    }
+    request.Init().WithApiInfo("ecm", APIVersion, "DescribeModule")
+    return
+}
+
+func NewDescribeModuleResponse() (response *DescribeModuleResponse) {
+    response = &DescribeModuleResponse{
+        BaseResponse: &tchttp.BaseResponse{},
+    }
+    return
+}
+
+// 获取模块列表
+func (c *Client) DescribeModule(request *DescribeModuleRequest) (response *DescribeModuleResponse, err error) {
+    if request == nil {
+        request = NewDescribeModuleRequest()
+    }
+    response = NewDescribeModuleResponse()
+    err = c.Send(request, response)
+    return
+}
+
+func NewDescribeModuleDetailRequest() (request *DescribeModuleDetailRequest) {
+    request = &DescribeModuleDetailRequest{
+        BaseRequest: &tchttp.BaseRequest{},
+    }
+    request.Init().WithApiInfo("ecm", APIVersion, "DescribeModuleDetail")
+    return
+}
+
+func NewDescribeModuleDetailResponse() (response *DescribeModuleDetailResponse) {
+    response = &DescribeModuleDetailResponse{
+        BaseResponse: &tchttp.BaseResponse{},
+    }
+    return
+}
+
+// 展示模块详细信息
+func (c *Client) DescribeModuleDetail(request *DescribeModuleDetailRequest) (response *DescribeModuleDetailResponse, err error) {
+    if request == nil {
+        request = NewDescribeModuleDetailRequest()
+    }
+    response = NewDescribeModuleDetailResponse()
+    err = c.Send(request, response)
+    return
+}
+
+func NewDescribeNetworkInterfacesRequest() (request *DescribeNetworkInterfacesRequest) {
+    request = &DescribeNetworkInterfacesRequest{
+        BaseRequest: &tchttp.BaseRequest{},
+    }
+    request.Init().WithApiInfo("ecm", APIVersion, "DescribeNetworkInterfaces")
+    return
+}
+
+func NewDescribeNetworkInterfacesResponse() (response *DescribeNetworkInterfacesResponse) {
+    response = &DescribeNetworkInterfacesResponse{
+        BaseResponse: &tchttp.BaseResponse{},
+    }
+    return
+}
+
+// 查询弹性网卡列表
+func (c *Client) DescribeNetworkInterfaces(request *DescribeNetworkInterfacesRequest) (response *DescribeNetworkInterfacesResponse, err error) {
+    if request == nil {
+        request = NewDescribeNetworkInterfacesRequest()
+    }
+    response = NewDescribeNetworkInterfacesResponse()
+    err = c.Send(request, response)
+    return
+}
+
+func NewDescribeNodeRequest() (request *DescribeNodeRequest) {
+    request = &DescribeNodeRequest{
+        BaseRequest: &tchttp.BaseRequest{},
+    }
+    request.Init().WithApiInfo("ecm", APIVersion, "DescribeNode")
+    return
+}
+
+func NewDescribeNodeResponse() (response *DescribeNodeResponse) {
+    response = &DescribeNodeResponse{
+        BaseResponse: &tchttp.BaseResponse{},
+    }
+    return
+}
+
+// 获取节点列表
+func (c *Client) DescribeNode(request *DescribeNodeRequest) (response *DescribeNodeResponse, err error) {
+    if request == nil {
+        request = NewDescribeNodeRequest()
+    }
+    response = NewDescribeNodeResponse()
+    err = c.Send(request, response)
+    return
+}
+
+func NewDescribePeakBaseOverviewRequest() (request *DescribePeakBaseOverviewRequest) {
+    request = &DescribePeakBaseOverviewRequest{
+        BaseRequest: &tchttp.BaseRequest{},
+    }
+    request.Init().WithApiInfo("ecm", APIVersion, "DescribePeakBaseOverview")
+    return
+}
+
+func NewDescribePeakBaseOverviewResponse() (response *DescribePeakBaseOverviewResponse) {
+    response = &DescribePeakBaseOverviewResponse{
+        BaseResponse: &tchttp.BaseResponse{},
+    }
+    return
+}
+
+// CPU 内存 硬盘等基础信息峰值数据
+func (c *Client) DescribePeakBaseOverview(request *DescribePeakBaseOverviewRequest) (response *DescribePeakBaseOverviewResponse, err error) {
+    if request == nil {
+        request = NewDescribePeakBaseOverviewRequest()
+    }
+    response = NewDescribePeakBaseOverviewResponse()
+    err = c.Send(request, response)
+    return
+}
+
+func NewDescribePeakNetworkOverviewRequest() (request *DescribePeakNetworkOverviewRequest) {
+    request = &DescribePeakNetworkOverviewRequest{
+        BaseRequest: &tchttp.BaseRequest{},
+    }
+    request.Init().WithApiInfo("ecm", APIVersion, "DescribePeakNetworkOverview")
+    return
+}
+
+func NewDescribePeakNetworkOverviewResponse() (response *DescribePeakNetworkOverviewResponse) {
+    response = &DescribePeakNetworkOverviewResponse{
+        BaseResponse: &tchttp.BaseResponse{},
+    }
+    return
+}
+
+// 获取网络峰值数据
+func (c *Client) DescribePeakNetworkOverview(request *DescribePeakNetworkOverviewRequest) (response *DescribePeakNetworkOverviewResponse, err error) {
+    if request == nil {
+        request = NewDescribePeakNetworkOverviewRequest()
+    }
+    response = NewDescribePeakNetworkOverviewResponse()
+    err = c.Send(request, response)
+    return
+}
+
+func NewDescribeSecurityGroupAssociationStatisticsRequest() (request *DescribeSecurityGroupAssociationStatisticsRequest) {
+    request = &DescribeSecurityGroupAssociationStatisticsRequest{
+        BaseRequest: &tchttp.BaseRequest{},
+    }
+    request.Init().WithApiInfo("ecm", APIVersion, "DescribeSecurityGroupAssociationStatistics")
+    return
+}
+
+func NewDescribeSecurityGroupAssociationStatisticsResponse() (response *DescribeSecurityGroupAssociationStatisticsResponse) {
+    response = &DescribeSecurityGroupAssociationStatisticsResponse{
+        BaseResponse: &tchttp.BaseResponse{},
+    }
+    return
+}
+
+// 查询安全组关联实例统计
+func (c *Client) DescribeSecurityGroupAssociationStatistics(request *DescribeSecurityGroupAssociationStatisticsRequest) (response *DescribeSecurityGroupAssociationStatisticsResponse, err error) {
+    if request == nil {
+        request = NewDescribeSecurityGroupAssociationStatisticsRequest()
+    }
+    response = NewDescribeSecurityGroupAssociationStatisticsResponse()
+    err = c.Send(request, response)
+    return
+}
+
+func NewDescribeSecurityGroupLimitsRequest() (request *DescribeSecurityGroupLimitsRequest) {
+    request = &DescribeSecurityGroupLimitsRequest{
+        BaseRequest: &tchttp.BaseRequest{},
+    }
+    request.Init().WithApiInfo("ecm", APIVersion, "DescribeSecurityGroupLimits")
+    return
+}
+
+func NewDescribeSecurityGroupLimitsResponse() (response *DescribeSecurityGroupLimitsResponse) {
+    response = &DescribeSecurityGroupLimitsResponse{
+        BaseResponse: &tchttp.BaseResponse{},
+    }
+    return
+}
+
+// 查询用户安全组配额
+func (c *Client) DescribeSecurityGroupLimits(request *DescribeSecurityGroupLimitsRequest) (response *DescribeSecurityGroupLimitsResponse, err error) {
+    if request == nil {
+        request = NewDescribeSecurityGroupLimitsRequest()
+    }
+    response = NewDescribeSecurityGroupLimitsResponse()
+    err = c.Send(request, response)
+    return
+}
+
+func NewDescribeSecurityGroupPoliciesRequest() (request *DescribeSecurityGroupPoliciesRequest) {
+    request = &DescribeSecurityGroupPoliciesRequest{
+        BaseRequest: &tchttp.BaseRequest{},
+    }
+    request.Init().WithApiInfo("ecm", APIVersion, "DescribeSecurityGroupPolicies")
+    return
+}
+
+func NewDescribeSecurityGroupPoliciesResponse() (response *DescribeSecurityGroupPoliciesResponse) {
+    response = &DescribeSecurityGroupPoliciesResponse{
+        BaseResponse: &tchttp.BaseResponse{},
+    }
+    return
+}
+
+// 查询安全组规则
+func (c *Client) DescribeSecurityGroupPolicies(request *DescribeSecurityGroupPoliciesRequest) (response *DescribeSecurityGroupPoliciesResponse, err error) {
+    if request == nil {
+        request = NewDescribeSecurityGroupPoliciesRequest()
+    }
+    response = NewDescribeSecurityGroupPoliciesResponse()
+    err = c.Send(request, response)
+    return
+}
+
+func NewDescribeSecurityGroupsRequest() (request *DescribeSecurityGroupsRequest) {
+    request = &DescribeSecurityGroupsRequest{
+        BaseRequest: &tchttp.BaseRequest{},
+    }
+    request.Init().WithApiInfo("ecm", APIVersion, "DescribeSecurityGroups")
+    return
+}
+
+func NewDescribeSecurityGroupsResponse() (response *DescribeSecurityGroupsResponse) {
+    response = &DescribeSecurityGroupsResponse{
+        BaseResponse: &tchttp.BaseResponse{},
+    }
+    return
+}
+
+// 查看安全组
+func (c *Client) DescribeSecurityGroups(request *DescribeSecurityGroupsRequest) (response *DescribeSecurityGroupsResponse, err error) {
+    if request == nil {
+        request = NewDescribeSecurityGroupsRequest()
+    }
+    response = NewDescribeSecurityGroupsResponse()
+    err = c.Send(request, response)
+    return
+}
+
+func NewDescribeSubnetsRequest() (request *DescribeSubnetsRequest) {
+    request = &DescribeSubnetsRequest{
+        BaseRequest: &tchttp.BaseRequest{},
+    }
+    request.Init().WithApiInfo("ecm", APIVersion, "DescribeSubnets")
+    return
+}
+
+func NewDescribeSubnetsResponse() (response *DescribeSubnetsResponse) {
+    response = &DescribeSubnetsResponse{
+        BaseResponse: &tchttp.BaseResponse{},
+    }
+    return
+}
+
+// 查询子网列表
+func (c *Client) DescribeSubnets(request *DescribeSubnetsRequest) (response *DescribeSubnetsResponse, err error) {
+    if request == nil {
+        request = NewDescribeSubnetsRequest()
+    }
+    response = NewDescribeSubnetsResponse()
+    err = c.Send(request, response)
+    return
+}
+
+func NewDescribeTargetHealthRequest() (request *DescribeTargetHealthRequest) {
+    request = &DescribeTargetHealthRequest{
+        BaseRequest: &tchttp.BaseRequest{},
+    }
+    request.Init().WithApiInfo("ecm", APIVersion, "DescribeTargetHealth")
+    return
+}
+
+func NewDescribeTargetHealthResponse() (response *DescribeTargetHealthResponse) {
+    response = &DescribeTargetHealthResponse{
+        BaseResponse: &tchttp.BaseResponse{},
+    }
+    return
+}
+
+// 获取负载均衡后端服务的健康检查状态。
+func (c *Client) DescribeTargetHealth(request *DescribeTargetHealthRequest) (response *DescribeTargetHealthResponse, err error) {
+    if request == nil {
+        request = NewDescribeTargetHealthRequest()
+    }
+    response = NewDescribeTargetHealthResponse()
+    err = c.Send(request, response)
+    return
+}
+
+func NewDescribeTargetsRequest() (request *DescribeTargetsRequest) {
+    request = &DescribeTargetsRequest{
+        BaseRequest: &tchttp.BaseRequest{},
+    }
+    request.Init().WithApiInfo("ecm", APIVersion, "DescribeTargets")
+    return
+}
+
+func NewDescribeTargetsResponse() (response *DescribeTargetsResponse) {
+    response = &DescribeTargetsResponse{
+        BaseResponse: &tchttp.BaseResponse{},
+    }
+    return
+}
+
+// 查询负载均衡绑定的后端服务列表。
+func (c *Client) DescribeTargets(request *DescribeTargetsRequest) (response *DescribeTargetsResponse, err error) {
+    if request == nil {
+        request = NewDescribeTargetsRequest()
+    }
+    response = NewDescribeTargetsResponse()
+    err = c.Send(request, response)
+    return
+}
+
+func NewDescribeTaskResultRequest() (request *DescribeTaskResultRequest) {
+    request = &DescribeTaskResultRequest{
+        BaseRequest: &tchttp.BaseRequest{},
+    }
+    request.Init().WithApiInfo("ecm", APIVersion, "DescribeTaskResult")
+    return
+}
+
+func NewDescribeTaskResultResponse() (response *DescribeTaskResultResponse) {
+    response = &DescribeTaskResultResponse{
+        BaseResponse: &tchttp.BaseResponse{},
+    }
+    return
+}
+
+// 查询EIP异步任务执行结果
+func (c *Client) DescribeTaskResult(request *DescribeTaskResultRequest) (response *DescribeTaskResultResponse, err error) {
+    if request == nil {
+        request = NewDescribeTaskResultRequest()
+    }
+    response = NewDescribeTaskResultResponse()
+    err = c.Send(request, response)
+    return
+}
+
+func NewDescribeTaskStatusRequest() (request *DescribeTaskStatusRequest) {
+    request = &DescribeTaskStatusRequest{
+        BaseRequest: &tchttp.BaseRequest{},
+    }
+    request.Init().WithApiInfo("ecm", APIVersion, "DescribeTaskStatus")
+    return
+}
+
+func NewDescribeTaskStatusResponse() (response *DescribeTaskStatusResponse) {
+    response = &DescribeTaskStatusResponse{
+        BaseResponse: &tchttp.BaseResponse{},
+    }
+    return
+}
+
+// 本接口(DescribeTaskStatus)用于获取异步任务状态
+func (c *Client) DescribeTaskStatus(request *DescribeTaskStatusRequest) (response *DescribeTaskStatusResponse, err error) {
+    if request == nil {
+        request = NewDescribeTaskStatusRequest()
+    }
+    response = NewDescribeTaskStatusResponse()
+    err = c.Send(request, response)
+    return
+}
+
+func NewDescribeVpcsRequest() (request *DescribeVpcsRequest) {
+    request = &DescribeVpcsRequest{
+        BaseRequest: &tchttp.BaseRequest{},
+    }
+    request.Init().WithApiInfo("ecm", APIVersion, "DescribeVpcs")
+    return
+}
+
+func NewDescribeVpcsResponse() (response *DescribeVpcsResponse) {
+    response = &DescribeVpcsResponse{
+        BaseResponse: &tchttp.BaseResponse{},
+    }
+    return
+}
+
+// 查询私有网络列表
+func (c *Client) DescribeVpcs(request *DescribeVpcsRequest) (response *DescribeVpcsResponse, err error) {
+    if request == nil {
+        request = NewDescribeVpcsRequest()
+    }
+    response = NewDescribeVpcsResponse()
+    err = c.Send(request, response)
+    return
+}
+
+func NewDetachNetworkInterfaceRequest() (request *DetachNetworkInterfaceRequest) {
+    request = &DetachNetworkInterfaceRequest{
+        BaseRequest: &tchttp.BaseRequest{},
+    }
+    request.Init().WithApiInfo("ecm", APIVersion, "DetachNetworkInterface")
+    return
+}
+
+func NewDetachNetworkInterfaceResponse() (response *DetachNetworkInterfaceResponse) {
+    response = &DetachNetworkInterfaceResponse{
+        BaseResponse: &tchttp.BaseResponse{},
+    }
+    return
+}
+
+// 弹性网卡解绑云主机
+func (c *Client) DetachNetworkInterface(request *DetachNetworkInterfaceRequest) (response *DetachNetworkInterfaceResponse, err error) {
+    if request == nil {
+        request = NewDetachNetworkInterfaceRequest()
+    }
+    response = NewDetachNetworkInterfaceResponse()
+    err = c.Send(request, response)
+    return
+}
+
+func NewDisassociateAddressRequest() (request *DisassociateAddressRequest) {
+    request = &DisassociateAddressRequest{
+        BaseRequest: &tchttp.BaseRequest{},
+    }
+    request.Init().WithApiInfo("ecm", APIVersion, "DisassociateAddress")
+    return
+}
+
+func NewDisassociateAddressResponse() (response *DisassociateAddressResponse) {
+    response = &DisassociateAddressResponse{
+        BaseResponse: &tchttp.BaseResponse{},
+    }
+    return
+}
+
+// 解绑弹性公网IP（简称 EIP）
+// 只有状态为 BIND 和 BIND_ENI 的 EIP 才能进行解绑定操作。
+// EIP 如果被封堵，则不能进行解绑定操作。
+func (c *Client) DisassociateAddress(request *DisassociateAddressRequest) (response *DisassociateAddressResponse, err error) {
+    if request == nil {
+        request = NewDisassociateAddressRequest()
+    }
+    response = NewDisassociateAddressResponse()
+    err = c.Send(request, response)
+    return
+}
+
+func NewDisassociateSecurityGroupsRequest() (request *DisassociateSecurityGroupsRequest) {
+    request = &DisassociateSecurityGroupsRequest{
+        BaseRequest: &tchttp.BaseRequest{},
+    }
+    request.Init().WithApiInfo("ecm", APIVersion, "DisassociateSecurityGroups")
+    return
+}
+
+func NewDisassociateSecurityGroupsResponse() (response *DisassociateSecurityGroupsResponse) {
+    response = &DisassociateSecurityGroupsResponse{
+        BaseResponse: &tchttp.BaseResponse{},
+    }
+    return
+}
+
+// 解绑安全组
+func (c *Client) DisassociateSecurityGroups(request *DisassociateSecurityGroupsRequest) (response *DisassociateSecurityGroupsResponse, err error) {
+    if request == nil {
+        request = NewDisassociateSecurityGroupsRequest()
+    }
+    response = NewDisassociateSecurityGroupsResponse()
+    err = c.Send(request, response)
+    return
+}
+
+func NewImportCustomImageRequest() (request *ImportCustomImageRequest) {
+    request = &ImportCustomImageRequest{
+        BaseRequest: &tchttp.BaseRequest{},
+    }
+    request.Init().WithApiInfo("ecm", APIVersion, "ImportCustomImage")
+    return
+}
+
+func NewImportCustomImageResponse() (response *ImportCustomImageResponse) {
+    response = &ImportCustomImageResponse{
+        BaseResponse: &tchttp.BaseResponse{},
+    }
+    return
+}
+
+// 导入自定义镜像，支持 RAW、VHD、QCOW2、VMDK 镜像格式
+func (c *Client) ImportCustomImage(request *ImportCustomImageRequest) (response *ImportCustomImageResponse, err error) {
+    if request == nil {
+        request = NewImportCustomImageRequest()
+    }
+    response = NewImportCustomImageResponse()
+    err = c.Send(request, response)
+    return
+}
+
+func NewImportImageRequest() (request *ImportImageRequest) {
+    request = &ImportImageRequest{
+        BaseRequest: &tchttp.BaseRequest{},
+    }
+    request.Init().WithApiInfo("ecm", APIVersion, "ImportImage")
+    return
+}
+
+func NewImportImageResponse() (response *ImportImageResponse) {
+    response = &ImportImageResponse{
+        BaseResponse: &tchttp.BaseResponse{},
+    }
+    return
+}
+
+// 从CVM产品导入镜像到ECM
+func (c *Client) ImportImage(request *ImportImageRequest) (response *ImportImageResponse, err error) {
+    if request == nil {
+        request = NewImportImageRequest()
+    }
+    response = NewImportImageResponse()
+    err = c.Send(request, response)
+    return
+}
+
+func NewMigrateNetworkInterfaceRequest() (request *MigrateNetworkInterfaceRequest) {
+    request = &MigrateNetworkInterfaceRequest{
+        BaseRequest: &tchttp.BaseRequest{},
+    }
+    request.Init().WithApiInfo("ecm", APIVersion, "MigrateNetworkInterface")
+    return
+}
+
+func NewMigrateNetworkInterfaceResponse() (response *MigrateNetworkInterfaceResponse) {
+    response = &MigrateNetworkInterfaceResponse{
+        BaseResponse: &tchttp.BaseResponse{},
+    }
+    return
+}
+
+// 弹性网卡迁移
+func (c *Client) MigrateNetworkInterface(request *MigrateNetworkInterfaceRequest) (response *MigrateNetworkInterfaceResponse, err error) {
+    if request == nil {
+        request = NewMigrateNetworkInterfaceRequest()
+    }
+    response = NewMigrateNetworkInterfaceResponse()
+    err = c.Send(request, response)
+    return
+}
+
+func NewMigratePrivateIpAddressRequest() (request *MigratePrivateIpAddressRequest) {
+    request = &MigratePrivateIpAddressRequest{
+        BaseRequest: &tchttp.BaseRequest{},
+    }
+    request.Init().WithApiInfo("ecm", APIVersion, "MigratePrivateIpAddress")
+    return
+}
+
+func NewMigratePrivateIpAddressResponse() (response *MigratePrivateIpAddressResponse) {
+    response = &MigratePrivateIpAddressResponse{
+        BaseResponse: &tchttp.BaseResponse{},
+    }
+    return
+}
+
+// 弹性网卡内网IP迁移。
+// 该接口用于将一个内网IP从一个弹性网卡上迁移到另外一个弹性网卡，主IP地址不支持迁移。
+// 迁移前后的弹性网卡必须在同一个子网内。
+func (c *Client) MigratePrivateIpAddress(request *MigratePrivateIpAddressRequest) (response *MigratePrivateIpAddressResponse, err error) {
+    if request == nil {
+        request = NewMigratePrivateIpAddressRequest()
+    }
+    response = NewMigratePrivateIpAddressResponse()
+    err = c.Send(request, response)
+    return
+}
+
+func NewModifyAddressAttributeRequest() (request *ModifyAddressAttributeRequest) {
+    request = &ModifyAddressAttributeRequest{
+        BaseRequest: &tchttp.BaseRequest{},
+    }
+    request.Init().WithApiInfo("ecm", APIVersion, "ModifyAddressAttribute")
+    return
+}
+
+func NewModifyAddressAttributeResponse() (response *ModifyAddressAttributeResponse) {
+    response = &ModifyAddressAttributeResponse{
+        BaseResponse: &tchttp.BaseResponse{},
+    }
+    return
+}
+
+// 修改弹性公网IP属性
+func (c *Client) ModifyAddressAttribute(request *ModifyAddressAttributeRequest) (response *ModifyAddressAttributeResponse, err error) {
+    if request == nil {
+        request = NewModifyAddressAttributeRequest()
+    }
+    response = NewModifyAddressAttributeResponse()
+    err = c.Send(request, response)
+    return
+}
+
+func NewModifyAddressesBandwidthRequest() (request *ModifyAddressesBandwidthRequest) {
+    request = &ModifyAddressesBandwidthRequest{
+        BaseRequest: &tchttp.BaseRequest{},
+    }
+    request.Init().WithApiInfo("ecm", APIVersion, "ModifyAddressesBandwidth")
+    return
+}
+
+func NewModifyAddressesBandwidthResponse() (response *ModifyAddressesBandwidthResponse) {
+    response = &ModifyAddressesBandwidthResponse{
+        BaseResponse: &tchttp.BaseResponse{},
+    }
+    return
+}
+
+// 调整弹性公网IP带宽
+func (c *Client) ModifyAddressesBandwidth(request *ModifyAddressesBandwidthRequest) (response *ModifyAddressesBandwidthResponse, err error) {
+    if request == nil {
+        request = NewModifyAddressesBandwidthRequest()
+    }
+    response = NewModifyAddressesBandwidthResponse()
+    err = c.Send(request, response)
+    return
+}
+
+func NewModifyDefaultSubnetRequest() (request *ModifyDefaultSubnetRequest) {
+    request = &ModifyDefaultSubnetRequest{
+        BaseRequest: &tchttp.BaseRequest{},
+    }
+    request.Init().WithApiInfo("ecm", APIVersion, "ModifyDefaultSubnet")
+    return
+}
+
+func NewModifyDefaultSubnetResponse() (response *ModifyDefaultSubnetResponse) {
+    response = &ModifyDefaultSubnetResponse{
+        BaseResponse: &tchttp.BaseResponse{},
+    }
+    return
+}
+
+// 修改在一个可用区下创建实例时使用的默认子网（创建实例时，未填写VPC参数时使用的sunbetId）
+func (c *Client) ModifyDefaultSubnet(request *ModifyDefaultSubnetRequest) (response *ModifyDefaultSubnetResponse, err error) {
+    if request == nil {
+        request = NewModifyDefaultSubnetRequest()
+    }
+    response = NewModifyDefaultSubnetResponse()
+    err = c.Send(request, response)
+    return
+}
+
+func NewModifyImageAttributeRequest() (request *ModifyImageAttributeRequest) {
+    request = &ModifyImageAttributeRequest{
+        BaseRequest: &tchttp.BaseRequest{},
+    }
+    request.Init().WithApiInfo("ecm", APIVersion, "ModifyImageAttribute")
+    return
+}
+
+func NewModifyImageAttributeResponse() (response *ModifyImageAttributeResponse) {
+    response = &ModifyImageAttributeResponse{
+        BaseResponse: &tchttp.BaseResponse{},
+    }
+    return
+}
+
+// 本接口（ModifyImageAttribute）用于修改镜像属性。
+func (c *Client) ModifyImageAttribute(request *ModifyImageAttributeRequest) (response *ModifyImageAttributeResponse, err error) {
+    if request == nil {
+        request = NewModifyImageAttributeRequest()
+    }
+    response = NewModifyImageAttributeResponse()
+    err = c.Send(request, response)
+    return
+}
+
+func NewModifyInstancesAttributeRequest() (request *ModifyInstancesAttributeRequest) {
+    request = &ModifyInstancesAttributeRequest{
+        BaseRequest: &tchttp.BaseRequest{},
+    }
+    request.Init().WithApiInfo("ecm", APIVersion, "ModifyInstancesAttribute")
+    return
+}
+
+func NewModifyInstancesAttributeResponse() (response *ModifyInstancesAttributeResponse) {
+    response = &ModifyInstancesAttributeResponse{
+        BaseResponse: &tchttp.BaseResponse{},
+    }
+    return
+}
+
+// 修改实例的属性。
+func (c *Client) ModifyInstancesAttribute(request *ModifyInstancesAttributeRequest) (response *ModifyInstancesAttributeResponse, err error) {
+    if request == nil {
+        request = NewModifyInstancesAttributeRequest()
+    }
+    response = NewModifyInstancesAttributeResponse()
+    err = c.Send(request, response)
+    return
+}
+
+func NewModifyListenerRequest() (request *ModifyListenerRequest) {
+    request = &ModifyListenerRequest{
+        BaseRequest: &tchttp.BaseRequest{},
+    }
+    request.Init().WithApiInfo("ecm", APIVersion, "ModifyListener")
+    return
+}
+
+func NewModifyListenerResponse() (response *ModifyListenerResponse) {
+    response = &ModifyListenerResponse{
+        BaseResponse: &tchttp.BaseResponse{},
+    }
+    return
+}
+
+// 修改负载均衡监听器属性。
+func (c *Client) ModifyListener(request *ModifyListenerRequest) (response *ModifyListenerResponse, err error) {
+    if request == nil {
+        request = NewModifyListenerRequest()
+    }
+    response = NewModifyListenerResponse()
+    err = c.Send(request, response)
+    return
+}
+
+func NewModifyLoadBalancerAttributesRequest() (request *ModifyLoadBalancerAttributesRequest) {
+    request = &ModifyLoadBalancerAttributesRequest{
+        BaseRequest: &tchttp.BaseRequest{},
+    }
+    request.Init().WithApiInfo("ecm", APIVersion, "ModifyLoadBalancerAttributes")
+    return
+}
+
+func NewModifyLoadBalancerAttributesResponse() (response *ModifyLoadBalancerAttributesResponse) {
+    response = &ModifyLoadBalancerAttributesResponse{
+        BaseResponse: &tchttp.BaseResponse{},
+    }
+    return
+}
+
+// 修改负载均衡实例的属性。
+func (c *Client) ModifyLoadBalancerAttributes(request *ModifyLoadBalancerAttributesRequest) (response *ModifyLoadBalancerAttributesResponse, err error) {
+    if request == nil {
+        request = NewModifyLoadBalancerAttributesRequest()
+    }
+    response = NewModifyLoadBalancerAttributesResponse()
+    err = c.Send(request, response)
+    return
+}
+
+func NewModifyModuleConfigRequest() (request *ModifyModuleConfigRequest) {
+    request = &ModifyModuleConfigRequest{
+        BaseRequest: &tchttp.BaseRequest{},
+    }
+    request.Init().WithApiInfo("ecm", APIVersion, "ModifyModuleConfig")
+    return
+}
+
+func NewModifyModuleConfigResponse() (response *ModifyModuleConfigResponse) {
+    response = &ModifyModuleConfigResponse{
+        BaseResponse: &tchttp.BaseResponse{},
+    }
+    return
+}
+
+// 修改模块配置，已关联实例的模块不支持调整配置。
+func (c *Client) ModifyModuleConfig(request *ModifyModuleConfigRequest) (response *ModifyModuleConfigResponse, err error) {
+    if request == nil {
+        request = NewModifyModuleConfigRequest()
+    }
+    response = NewModifyModuleConfigResponse()
+    err = c.Send(request, response)
+    return
+}
+
+func NewModifyModuleImageRequest() (request *ModifyModuleImageRequest) {
+    request = &ModifyModuleImageRequest{
+        BaseRequest: &tchttp.BaseRequest{},
+    }
+    request.Init().WithApiInfo("ecm", APIVersion, "ModifyModuleImage")
+    return
+}
+
+func NewModifyModuleImageResponse() (response *ModifyModuleImageResponse) {
+    response = &ModifyModuleImageResponse{
+        BaseResponse: &tchttp.BaseResponse{},
+    }
+    return
+}
+
+// 修改模块的默认镜像
+func (c *Client) ModifyModuleImage(request *ModifyModuleImageRequest) (response *ModifyModuleImageResponse, err error) {
+    if request == nil {
+        request = NewModifyModuleImageRequest()
+    }
+    response = NewModifyModuleImageResponse()
+    err = c.Send(request, response)
+    return
+}
+
+func NewModifyModuleIpDirectRequest() (request *ModifyModuleIpDirectRequest) {
+    request = &ModifyModuleIpDirectRequest{
+        BaseRequest: &tchttp.BaseRequest{},
+    }
+    request.Init().WithApiInfo("ecm", APIVersion, "ModifyModuleIpDirect")
+    return
+}
+
+func NewModifyModuleIpDirectResponse() (response *ModifyModuleIpDirectResponse) {
+    response = &ModifyModuleIpDirectResponse{
+        BaseResponse: &tchttp.BaseResponse{},
+    }
+    return
+}
+
+// 修改模块IP直通。
+func (c *Client) ModifyModuleIpDirect(request *ModifyModuleIpDirectRequest) (response *ModifyModuleIpDirectResponse, err error) {
+    if request == nil {
+        request = NewModifyModuleIpDirectRequest()
+    }
+    response = NewModifyModuleIpDirectResponse()
+    err = c.Send(request, response)
+    return
+}
+
+func NewModifyModuleNameRequest() (request *ModifyModuleNameRequest) {
+    request = &ModifyModuleNameRequest{
+        BaseRequest: &tchttp.BaseRequest{},
+    }
+    request.Init().WithApiInfo("ecm", APIVersion, "ModifyModuleName")
+    return
+}
+
+func NewModifyModuleNameResponse() (response *ModifyModuleNameResponse) {
+    response = &ModifyModuleNameResponse{
+        BaseResponse: &tchttp.BaseResponse{},
+    }
+    return
+}
+
+// 修改模块名称
+func (c *Client) ModifyModuleName(request *ModifyModuleNameRequest) (response *ModifyModuleNameResponse, err error) {
+    if request == nil {
+        request = NewModifyModuleNameRequest()
+    }
+    response = NewModifyModuleNameResponse()
+    err = c.Send(request, response)
+    return
+}
+
+func NewModifyModuleNetworkRequest() (request *ModifyModuleNetworkRequest) {
+    request = &ModifyModuleNetworkRequest{
+        BaseRequest: &tchttp.BaseRequest{},
+    }
+    request.Init().WithApiInfo("ecm", APIVersion, "ModifyModuleNetwork")
+    return
+}
+
+func NewModifyModuleNetworkResponse() (response *ModifyModuleNetworkResponse) {
+    response = &ModifyModuleNetworkResponse{
+        BaseResponse: &tchttp.BaseResponse{},
+    }
+    return
+}
+
+// 修改模块默认带宽上限
+func (c *Client) ModifyModuleNetwork(request *ModifyModuleNetworkRequest) (response *ModifyModuleNetworkResponse, err error) {
+    if request == nil {
+        request = NewModifyModuleNetworkRequest()
+    }
+    response = NewModifyModuleNetworkResponse()
+    err = c.Send(request, response)
+    return
+}
+
+func NewModifyModuleSecurityGroupsRequest() (request *ModifyModuleSecurityGroupsRequest) {
+    request = &ModifyModuleSecurityGroupsRequest{
+        BaseRequest: &tchttp.BaseRequest{},
+    }
+    request.Init().WithApiInfo("ecm", APIVersion, "ModifyModuleSecurityGroups")
+    return
+}
+
+func NewModifyModuleSecurityGroupsResponse() (response *ModifyModuleSecurityGroupsResponse) {
+    response = &ModifyModuleSecurityGroupsResponse{
+        BaseResponse: &tchttp.BaseResponse{},
+    }
+    return
+}
+
+// 修改模块默认安全组
+func (c *Client) ModifyModuleSecurityGroups(request *ModifyModuleSecurityGroupsRequest) (response *ModifyModuleSecurityGroupsResponse, err error) {
+    if request == nil {
+        request = NewModifyModuleSecurityGroupsRequest()
+    }
+    response = NewModifyModuleSecurityGroupsResponse()
+    err = c.Send(request, response)
+    return
+}
+
+func NewModifySecurityGroupAttributeRequest() (request *ModifySecurityGroupAttributeRequest) {
+    request = &ModifySecurityGroupAttributeRequest{
+        BaseRequest: &tchttp.BaseRequest{},
+    }
+    request.Init().WithApiInfo("ecm", APIVersion, "ModifySecurityGroupAttribute")
+    return
+}
+
+func NewModifySecurityGroupAttributeResponse() (response *ModifySecurityGroupAttributeResponse) {
+    response = &ModifySecurityGroupAttributeResponse{
+        BaseResponse: &tchttp.BaseResponse{},
+    }
+    return
+}
+
+// 修改安全组属性
+func (c *Client) ModifySecurityGroupAttribute(request *ModifySecurityGroupAttributeRequest) (response *ModifySecurityGroupAttributeResponse, err error) {
+    if request == nil {
+        request = NewModifySecurityGroupAttributeRequest()
+    }
+    response = NewModifySecurityGroupAttributeResponse()
+    err = c.Send(request, response)
+    return
+}
+
+func NewModifySecurityGroupPoliciesRequest() (request *ModifySecurityGroupPoliciesRequest) {
+    request = &ModifySecurityGroupPoliciesRequest{
+        BaseRequest: &tchttp.BaseRequest{},
+    }
+    request.Init().WithApiInfo("ecm", APIVersion, "ModifySecurityGroupPolicies")
+    return
+}
+
+func NewModifySecurityGroupPoliciesResponse() (response *ModifySecurityGroupPoliciesResponse) {
+    response = &ModifySecurityGroupPoliciesResponse{
+        BaseResponse: &tchttp.BaseResponse{},
+    }
+    return
+}
+
+// 修改安全组出站和入站规则
+func (c *Client) ModifySecurityGroupPolicies(request *ModifySecurityGroupPoliciesRequest) (response *ModifySecurityGroupPoliciesResponse, err error) {
+    if request == nil {
+        request = NewModifySecurityGroupPoliciesRequest()
+    }
+    response = NewModifySecurityGroupPoliciesResponse()
+    err = c.Send(request, response)
+    return
+}
+
+func NewModifySubnetAttributeRequest() (request *ModifySubnetAttributeRequest) {
+    request = &ModifySubnetAttributeRequest{
+        BaseRequest: &tchttp.BaseRequest{},
+    }
+    request.Init().WithApiInfo("ecm", APIVersion, "ModifySubnetAttribute")
+    return
+}
+
+func NewModifySubnetAttributeResponse() (response *ModifySubnetAttributeResponse) {
+    response = &ModifySubnetAttributeResponse{
+        BaseResponse: &tchttp.BaseResponse{},
+    }
+    return
+}
+
+// 修改子网属性
+func (c *Client) ModifySubnetAttribute(request *ModifySubnetAttributeRequest) (response *ModifySubnetAttributeResponse, err error) {
+    if request == nil {
+        request = NewModifySubnetAttributeRequest()
+    }
+    response = NewModifySubnetAttributeResponse()
+    err = c.Send(request, response)
+    return
+}
+
+func NewModifyTargetPortRequest() (request *ModifyTargetPortRequest) {
+    request = &ModifyTargetPortRequest{
+        BaseRequest: &tchttp.BaseRequest{},
+    }
+    request.Init().WithApiInfo("ecm", APIVersion, "ModifyTargetPort")
+    return
+}
+
+func NewModifyTargetPortResponse() (response *ModifyTargetPortResponse) {
+    response = &ModifyTargetPortResponse{
+        BaseResponse: &tchttp.BaseResponse{},
+    }
+    return
+}
+
+// 修改监听器绑定的后端机器的端口。
+func (c *Client) ModifyTargetPort(request *ModifyTargetPortRequest) (response *ModifyTargetPortResponse, err error) {
+    if request == nil {
+        request = NewModifyTargetPortRequest()
+    }
+    response = NewModifyTargetPortResponse()
+    err = c.Send(request, response)
+    return
+}
+
+func NewModifyTargetWeightRequest() (request *ModifyTargetWeightRequest) {
+    request = &ModifyTargetWeightRequest{
+        BaseRequest: &tchttp.BaseRequest{},
+    }
+    request.Init().WithApiInfo("ecm", APIVersion, "ModifyTargetWeight")
+    return
+}
+
+func NewModifyTargetWeightResponse() (response *ModifyTargetWeightResponse) {
+    response = &ModifyTargetWeightResponse{
+        BaseResponse: &tchttp.BaseResponse{},
+    }
+    return
+}
+
+// 修改监听器绑定的后端机器的转发权重。
+func (c *Client) ModifyTargetWeight(request *ModifyTargetWeightRequest) (response *ModifyTargetWeightResponse, err error) {
+    if request == nil {
+        request = NewModifyTargetWeightRequest()
+    }
+    response = NewModifyTargetWeightResponse()
+    err = c.Send(request, response)
+    return
+}
+
+func NewModifyVpcAttributeRequest() (request *ModifyVpcAttributeRequest) {
+    request = &ModifyVpcAttributeRequest{
+        BaseRequest: &tchttp.BaseRequest{},
+    }
+    request.Init().WithApiInfo("ecm", APIVersion, "ModifyVpcAttribute")
+    return
+}
+
+func NewModifyVpcAttributeResponse() (response *ModifyVpcAttributeResponse) {
+    response = &ModifyVpcAttributeResponse{
+        BaseResponse: &tchttp.BaseResponse{},
+    }
+    return
+}
+
+// 修改私有网络（VPC）的相关属性
+func (c *Client) ModifyVpcAttribute(request *ModifyVpcAttributeRequest) (response *ModifyVpcAttributeResponse, err error) {
+    if request == nil {
+        request = NewModifyVpcAttributeRequest()
+    }
+    response = NewModifyVpcAttributeResponse()
+    err = c.Send(request, response)
+    return
+}
+
+func NewRebootInstancesRequest() (request *RebootInstancesRequest) {
+    request = &RebootInstancesRequest{
+        BaseRequest: &tchttp.BaseRequest{},
+    }
+    request.Init().WithApiInfo("ecm", APIVersion, "RebootInstances")
+    return
+}
+
+func NewRebootInstancesResponse() (response *RebootInstancesResponse) {
+    response = &RebootInstancesResponse{
+        BaseResponse: &tchttp.BaseResponse{},
+    }
+    return
+}
+
+// 只有状态为RUNNING的实例才可以进行此操作；接口调用成功时，实例会进入REBOOTING状态；重启实例成功时，实例会进入RUNNING状态；支持强制重启，强制重启的效果等同于关闭物理计算机的电源开关再重新启动。强制重启可能会导致数据丢失或文件系统损坏，请仅在服务器不能正常重启时使用。
+func (c *Client) RebootInstances(request *RebootInstancesRequest) (response *RebootInstancesResponse, err error) {
+    if request == nil {
+        request = NewRebootInstancesRequest()
+    }
+    response = NewRebootInstancesResponse()
+    err = c.Send(request, response)
+    return
+}
+
+func NewReleaseAddressesRequest() (request *ReleaseAddressesRequest) {
+    request = &ReleaseAddressesRequest{
+        BaseRequest: &tchttp.BaseRequest{},
+    }
+    request.Init().WithApiInfo("ecm", APIVersion, "ReleaseAddresses")
+    return
+}
+
+func NewReleaseAddressesResponse() (response *ReleaseAddressesResponse) {
+    response = &ReleaseAddressesResponse{
+        BaseResponse: &tchttp.BaseResponse{},
+    }
+    return
+}
+
+// 释放一个或多个弹性公网IP（简称 EIP）。
+// 该操作不可逆，释放后 EIP 关联的 IP 地址将不再属于您的名下。
+// 只有状态为 UNBIND 的 EIP 才能进行释放操作。
+func (c *Client) ReleaseAddresses(request *ReleaseAddressesRequest) (response *ReleaseAddressesResponse, err error) {
+    if request == nil {
+        request = NewReleaseAddressesRequest()
+    }
+    response = NewReleaseAddressesResponse()
+    err = c.Send(request, response)
+    return
+}
+
+func NewRemovePrivateIpAddressesRequest() (request *RemovePrivateIpAddressesRequest) {
+    request = &RemovePrivateIpAddressesRequest{
+        BaseRequest: &tchttp.BaseRequest{},
+    }
+    request.Init().WithApiInfo("ecm", APIVersion, "RemovePrivateIpAddresses")
+    return
+}
+
+func NewRemovePrivateIpAddressesResponse() (response *RemovePrivateIpAddressesResponse) {
+    response = &RemovePrivateIpAddressesResponse{
+        BaseResponse: &tchttp.BaseResponse{},
+    }
+    return
+}
+
+// 弹性网卡退还内网 IP。
+// 退还弹性网卡上的辅助内网IP，接口自动解关联弹性公网 IP。不能退还弹性网卡的主内网IP。
+func (c *Client) RemovePrivateIpAddresses(request *RemovePrivateIpAddressesRequest) (response *RemovePrivateIpAddressesResponse, err error) {
+    if request == nil {
+        request = NewRemovePrivateIpAddressesRequest()
+    }
+    response = NewRemovePrivateIpAddressesResponse()
+    err = c.Send(request, response)
+    return
+}
+
+func NewReplaceSecurityGroupPolicyRequest() (request *ReplaceSecurityGroupPolicyRequest) {
+    request = &ReplaceSecurityGroupPolicyRequest{
+        BaseRequest: &tchttp.BaseRequest{},
+    }
+    request.Init().WithApiInfo("ecm", APIVersion, "ReplaceSecurityGroupPolicy")
+    return
+}
+
+func NewReplaceSecurityGroupPolicyResponse() (response *ReplaceSecurityGroupPolicyResponse) {
+    response = &ReplaceSecurityGroupPolicyResponse{
+        BaseResponse: &tchttp.BaseResponse{},
+    }
+    return
+}
+
+// 替换单条安全组路由规则, 单个请求中只能替换单个方向的一条规则, 必须要指定索引（PolicyIndex）。
+func (c *Client) ReplaceSecurityGroupPolicy(request *ReplaceSecurityGroupPolicyRequest) (response *ReplaceSecurityGroupPolicyResponse, err error) {
+    if request == nil {
+        request = NewReplaceSecurityGroupPolicyRequest()
+    }
+    response = NewReplaceSecurityGroupPolicyResponse()
+    err = c.Send(request, response)
+    return
+}
+
+func NewResetInstancesRequest() (request *ResetInstancesRequest) {
+    request = &ResetInstancesRequest{
+        BaseRequest: &tchttp.BaseRequest{},
+    }
+    request.Init().WithApiInfo("ecm", APIVersion, "ResetInstances")
+    return
+}
+
+func NewResetInstancesResponse() (response *ResetInstancesResponse) {
+    response = &ResetInstancesResponse{
+        BaseResponse: &tchttp.BaseResponse{},
+    }
+    return
+}
+
+// 重装实例，若指定了ImageId参数，则使用指定的镜像重装；否则按照当前实例使用的镜像进行重装；若未指定密码，则密码通过站内信形式随后发送。
+func (c *Client) ResetInstances(request *ResetInstancesRequest) (response *ResetInstancesResponse, err error) {
+    if request == nil {
+        request = NewResetInstancesRequest()
+    }
+    response = NewResetInstancesResponse()
+    err = c.Send(request, response)
+    return
+}
+
+func NewResetInstancesMaxBandwidthRequest() (request *ResetInstancesMaxBandwidthRequest) {
+    request = &ResetInstancesMaxBandwidthRequest{
+        BaseRequest: &tchttp.BaseRequest{},
+    }
+    request.Init().WithApiInfo("ecm", APIVersion, "ResetInstancesMaxBandwidth")
+    return
+}
+
+func NewResetInstancesMaxBandwidthResponse() (response *ResetInstancesMaxBandwidthResponse) {
+    response = &ResetInstancesMaxBandwidthResponse{
+        BaseResponse: &tchttp.BaseResponse{},
+    }
+    return
+}
+
+// 重置实例的最大带宽上限。
+func (c *Client) ResetInstancesMaxBandwidth(request *ResetInstancesMaxBandwidthRequest) (response *ResetInstancesMaxBandwidthResponse, err error) {
+    if request == nil {
+        request = NewResetInstancesMaxBandwidthRequest()
+    }
+    response = NewResetInstancesMaxBandwidthResponse()
+    err = c.Send(request, response)
+    return
+}
+
+func NewResetInstancesPasswordRequest() (request *ResetInstancesPasswordRequest) {
+    request = &ResetInstancesPasswordRequest{
+        BaseRequest: &tchttp.BaseRequest{},
+    }
+    request.Init().WithApiInfo("ecm", APIVersion, "ResetInstancesPassword")
+    return
+}
+
+func NewResetInstancesPasswordResponse() (response *ResetInstancesPasswordResponse) {
+    response = &ResetInstancesPasswordResponse{
+        BaseResponse: &tchttp.BaseResponse{},
+    }
+    return
+}
+
+// 重置处于运行中状态的实例的密码，需要显式指定强制关机参数ForceStop。如果没有显式指定强制关机参数，则只有处于关机状态的实例才允许执行重置密码操作。
+func (c *Client) ResetInstancesPassword(request *ResetInstancesPasswordRequest) (response *ResetInstancesPasswordResponse, err error) {
+    if request == nil {
+        request = NewResetInstancesPasswordRequest()
+    }
+    response = NewResetInstancesPasswordResponse()
+    err = c.Send(request, response)
+    return
+}
+
+func NewRunInstancesRequest() (request *RunInstancesRequest) {
+    request = &RunInstancesRequest{
+        BaseRequest: &tchttp.BaseRequest{},
+    }
+    request.Init().WithApiInfo("ecm", APIVersion, "RunInstances")
+    return
+}
+
+func NewRunInstancesResponse() (response *RunInstancesResponse) {
+    response = &RunInstancesResponse{
+        BaseResponse: &tchttp.BaseResponse{},
+    }
+    return
+}
+
+// 创建ECM实例
+func (c *Client) RunInstances(request *RunInstancesRequest) (response *RunInstancesResponse, err error) {
+    if request == nil {
+        request = NewRunInstancesRequest()
+    }
+    response = NewRunInstancesResponse()
+    err = c.Send(request, response)
+    return
+}
+
+func NewStartInstancesRequest() (request *StartInstancesRequest) {
+    request = &StartInstancesRequest{
+        BaseRequest: &tchttp.BaseRequest{},
+    }
+    request.Init().WithApiInfo("ecm", APIVersion, "StartInstances")
+    return
+}
+
+func NewStartInstancesResponse() (response *StartInstancesResponse) {
+    response = &StartInstancesResponse{
+        BaseResponse: &tchttp.BaseResponse{},
+    }
+    return
+}
+
+// 只有状态为STOPPED的实例才可以进行此操作；接口调用成功时，实例会进入STARTING状态；启动实例成功时，实例会进入RUNNING状态。
+func (c *Client) StartInstances(request *StartInstancesRequest) (response *StartInstancesResponse, err error) {
+    if request == nil {
+        request = NewStartInstancesRequest()
+    }
+    response = NewStartInstancesResponse()
+    err = c.Send(request, response)
+    return
+}
+
+func NewStopInstancesRequest() (request *StopInstancesRequest) {
+    request = &StopInstancesRequest{
+        BaseRequest: &tchttp.BaseRequest{},
+    }
+    request.Init().WithApiInfo("ecm", APIVersion, "StopInstances")
+    return
+}
+
+func NewStopInstancesResponse() (response *StopInstancesResponse) {
+    response = &StopInstancesResponse{
+        BaseResponse: &tchttp.BaseResponse{},
+    }
+    return
+}
+
+// 只有处于"RUNNING"状态的实例才能够进行关机操作；
+// 调用成功时，实例会进入STOPPING状态；关闭实例成功时，实例会进入STOPPED状态；
+// 支持强制关闭，强制关机的效果等同于关闭物理计算机的电源开关，强制关机可能会导致数据丢失或文件系统损坏，请仅在服务器不能正常关机时使用。
+func (c *Client) StopInstances(request *StopInstancesRequest) (response *StopInstancesResponse, err error) {
+    if request == nil {
+        request = NewStopInstancesRequest()
+    }
+    response = NewStopInstancesResponse()
+    err = c.Send(request, response)
+    return
+}
+
+func NewTerminateInstancesRequest() (request *TerminateInstancesRequest) {
+    request = &TerminateInstancesRequest{
+        BaseRequest: &tchttp.BaseRequest{},
+    }
+    request.Init().WithApiInfo("ecm", APIVersion, "TerminateInstances")
+    return
+}
+
+func NewTerminateInstancesResponse() (response *TerminateInstancesResponse) {
+    response = &TerminateInstancesResponse{
+        BaseResponse: &tchttp.BaseResponse{},
+    }
+    return
+}
+
+// 销毁实例
+func (c *Client) TerminateInstances(request *TerminateInstancesRequest) (response *TerminateInstancesResponse, err error) {
+    if request == nil {
+        request = NewTerminateInstancesRequest()
+    }
+    response = NewTerminateInstancesResponse()
+    err = c.Send(request, response)
+    return
+}

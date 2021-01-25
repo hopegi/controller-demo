@@ -1,0 +1,9 @@
+apiVersion: hopegi.com/v1
+kind: EcsBinding
+metadata:
+  name: ag-config-feaif
+spec:
+  id: fwfjasofs-sfshfojfssda-sfano
+  name: ag-config-feaif
+  nodename: i-agconfigfeaifz
+  innerip: 192.168.0.1
