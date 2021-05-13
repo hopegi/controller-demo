@@ -12,7 +12,7 @@ spec:
     listKind: EcsBindingList
     plural: ecsbinding        #本行和下行仅填写CRD的小写即可
     singular: ecsbinding
-    scope: Clustered          #资源的作用域，一般是命名空间下和集群级别，命名空间是Namespaced，集群则Clustered
+  scope: Cluster          #资源的作用域，一般是命名空间下和集群级别，命名空间是Namespaced，集群则Cluster
   validation:                 #本行和下行都是固定
     openAPIV3Schema:
       description: hopegi test crd
