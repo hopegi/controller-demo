@@ -12,6 +12,19 @@ spec:
     listKind: EcsBindingList
     plural: ecsbinding       #复数写法 #本行和下行仅填写CRD的小写即可
     singular: ecsbinding    #单数写法
+    shortNames:
+      - ecsb          #
+  preserveUnknownFields: false   #允许存储未知字段，就是下面没声明的
+  additionalPrinterColumns:  #在kubectl显示的字段
+    - JSONPath: .metadata.creationTimestamp
+      name: Age
+      type: date
+    - JSONPath: .spec.nodename
+      name: NodeName
+      type: string
+    - JSONPath: .spec.innerip
+      name: InnerIp
+      type: string
   scope: Cluster          #资源的作用域，一般是命名空间下和集群级别，命名空间是Namespaced，集群则Cluster
   validation:                 #本行和下行都是固定
     openAPIV3Schema:
