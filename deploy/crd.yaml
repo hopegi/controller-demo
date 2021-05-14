@@ -10,8 +10,8 @@ spec:
   names:
     kind: EcsBinding          #本行和下一行定义CRD的单体kind和集合类型的Kind
     listKind: EcsBindingList
-    plural: ecsbinding        #本行和下行仅填写CRD的小写即可
-    singular: ecsbinding
+    plural: ecsbinding       #复数写法 #本行和下行仅填写CRD的小写即可
+    singular: ecsbinding    #单数写法
   scope: Cluster          #资源的作用域，一般是命名空间下和集群级别，命名空间是Namespaced，集群则Cluster
   validation:                 #本行和下行都是固定
     openAPIV3Schema:
