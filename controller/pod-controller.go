@@ -86,7 +86,13 @@ func (p *PodController) reconcile(pods []*v1.Pod) error {
 	//fmt.Println("reconcile pods")
 	glog.Infof("reconcile pods")
 	for _, pod := range pods {
-		fmt.Printf("pod name is %s.%s  \n", (*pod).Namespace, (*pod).Name)
+		fmt.Printf("pod name is %s.%s \n", (*pod).Namespace, (*pod).Name)
+		if len(pod.Spec.ImagePullSecrets) > 0 {
+			fmt.Println("ImagePullSecrets of ", pod.Name)
+			for _, si := range pod.Spec.ImagePullSecrets {
+				fmt.Printf(" %s \n", si.Name)
+			}
+		}
 
 	}
 	nodes, err := p.kubeClient.CoreV1().Nodes().List(metav1.ListOptions{LabelSelector: "node-role.kubernetes.io/master"})

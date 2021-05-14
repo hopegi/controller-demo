@@ -7,15 +7,13 @@ import (
 	//"k8s.io/client-go/dynamic"
 	//"k8s.io/client-go/tools/clientcmd"
 
-	//"controller-demo/client/versiond/scheme"
 	"fmt"
-	//"k8s.io/apimachinery/pkg/runtime/serializer"
 
+	//ecsv1 "controller-demo/api/v1"
+	//meta_v1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"os"
 	"os/signal"
 	"syscall"
-	//ecsv1 "controller-demo/api/v1"
-	//meta_v1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
 
 var onlyOneSignalHandler = make(chan struct{})
@@ -39,25 +37,37 @@ func main() {
 	//fmt.Println(len(list.Items))
 	//
 
-	//cfg.GroupVersion=&ecsv1.GroupVersion
-	//cfg.APIPath="/apis"
-	//cfg.NegotiatedSerializer = serializer.DirectCodecFactory{CodecFactory: scheme.Codecs}
-	//dClient,err:= dynamic.NewClient(cfg)
-	//if err!=nil{
-	//	fmt.Println("new client error ",err)
+	//cfg.GroupVersion = &ecsv1.GroupVersion
+	//cfg.APIPath = "/apis"
+	////cfg.NegotiatedSerializer = serializer.DirectCodecFactory{CodecFactory: scheme.Codecs}
+	//dClient, err := dynamic.NewClient(cfg)
+	//if err != nil {
+	//	fmt.Println("new client error ", err)
 	//}
 	//if err != nil {
 	//	return
 	//}
-	//list,err:= dClient.
+	//list, err := dClient.
 	//	//ParameterCodec(scheme.ParameterCodec).
-	//	Resource(&meta_v1.APIResource{Name:"Ecsbinding",Namespaced:false},"").
+	//	Resource(&meta_v1.APIResource{Name: "Ecsbinding", Namespaced: false}, "").
 	//	//List(meta_v1.ListOptions{})
-	//	Get("ag-config-feaif",meta_v1.GetOptions{})
-	//if err!=nil{
-	//	fmt.Println("client call error ",err)
+	//	Get("ag-config-feaif", meta_v1.GetOptions{})
+	//if err != nil {
+	//	fmt.Println("client call error ", err)
 	//}
-	//fmt.Println(list)
+	//fmt.Println(*list)
+	//list.SetName(list.GetName() + "-copy")
+	//list.SetAPIVersion("hopegi.com/v1")
+	//list.SetKind("EcsBinding")
+	//list.SetResourceVersion("")
+	//createRes, err := dClient.
+	//	Resource(&meta_v1.APIResource{Name: "Ecsbinding", Namespaced: false}, "").
+	//	Create(list)
+	//if err != nil {
+	//	fmt.Println("client create error ", err)
+	//} else {
+	//	fmt.Println("create res ", createRes)
+	//}
 	//return
 	stopCh := SetupSignalHandler()
 	if err := app.Run(stopCh); err != nil {

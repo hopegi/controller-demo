@@ -26,19 +26,21 @@ func Run(stopCh <-chan struct{}) error {
 }
 
 func StartController(stopCh <-chan struct{}) error {
-	cfg, err := clientcmd.BuildConfigFromFlags("", "/root/.kube/config")
+	cfg, err := clientcmd.BuildConfigFromFlags("", "/home/hopegi/.kube/config")
 	if err != nil {
 		glog.Fatalf("error building kubernetes config:%s", err.Error())
 	}
 	kubeClient, err := kubernetes.NewForConfig(cfg)
 	factory := informers.NewSharedInformerFactory(kubeClient, 0)
 
-	podInformer := factory.Core().V1().Pods()
-	pc := controller.NewPodController(kubeClient, podInformer, "k8s-cluster")
-	go pc.Run(stopCh)
+	if false {
+		podInformer := factory.Core().V1().Pods()
+		pc := controller.NewPodController(kubeClient, podInformer, "k8s-cluster")
+		go pc.Run(stopCh)
+	}
 
 	dynamicKubeClient, _ := versiond.NewForConfig(cfg)
-	ecsBindingInformer := list_and_watch.New(factory, nil).EcsBinding()
+	ecsBindingInformer := list_and_watch.New(factory, nil, dynamicKubeClient).EcsBinding()
 	ec := controller.NewEcsBindingController(dynamicKubeClient, ecsBindingInformer, "k8s-cluster")
 	go ec.Run(stopCh)
 
